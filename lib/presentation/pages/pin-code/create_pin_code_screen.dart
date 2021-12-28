@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:android_test_task/presentation/pages/pin-code/components/header.dart';
 import 'package:android_test_task/presentation/resources/color-manager.dart';
 import 'package:android_test_task/presentation/resources/strings-manager.dart';
@@ -14,7 +16,9 @@ class CreatePinCodeView extends StatefulWidget {
 }
 
 class _CreatePinCodeViewState extends State<CreatePinCodeView> {
+  String pinText = "";
   TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +93,8 @@ class _CreatePinCodeViewState extends State<CreatePinCodeView> {
                 textColor: ColorManager.grey2,
                 rightButtonFn: () {
                   setState(() {
-                   // text = text.substring(0, text.length - 1);
+                   pinText = pinText.substring(0, pinText.length - 1);
+                   print(pinText);
                   });
                 },
                 rightIcon: Icon(Icons.backspace, color: ColorManager.grey2,),
@@ -103,7 +108,9 @@ class _CreatePinCodeViewState extends State<CreatePinCodeView> {
 
   _onKeyboardTap(String value) {
     setState(() {
-     // text = text + value;
+      pinText = pinText + value;
+      textEditingController.text = pinText;
+      print(pinText);
     });
   }
 }
